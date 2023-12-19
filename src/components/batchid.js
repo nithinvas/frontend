@@ -32,6 +32,8 @@ const BatchList = () => {
     console.log(event.target.value);
   };
 
+  const [msg,setMsg] = useState(null);
+
   const location = useLocation();
   const cleanedState = location.state || {};
   const jwtToken = cleanedState.token;
@@ -44,6 +46,40 @@ const BatchList = () => {
       <p>{response_data.message}</p>
     ) : null;
 
+  // const handlePay = async () => {
+  //   try {
+  //     const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${jwtToken}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //       withCredentials: true,
+  //     };
+    
+  //     const bodyParameters = {
+  //       batchId: selectedBatch
+  //     };
+
+  //     const response = await axios.post(
+  //       'https://backend-psi-jet.vercel.app/auth/payment',
+  //       bodyParameters,
+  //       config,
+  //     );
+  //     console.log(response);
+  //     setMsg(response.data.message);
+
+  //     setPaymentStatus('success');
+
+  //     // Redirect to Enrolled page upon successful payment
+  //     navigate('/enrolled', { state: cleanedState });
+  //   } catch (error) {
+  //     console.error('Payment failed:', error);
+  //     setPaymentStatus('failed');
+
+  //     // Redirect to the same page or handle as needed upon payment failure
+  //     // navigate('/notenrolled', { state: cleanedState });
+  //   }
+  // };
   const handlePay = async () => {
     try {
       const config = {
@@ -53,30 +89,34 @@ const BatchList = () => {
         },
         withCredentials: true,
       };
-    
+  
       const bodyParameters = {
-        batchId: selectedBatch
+        batchId: selectedBatch,
       };
-
+  
       const response = await axios.post(
         'https://backend-psi-jet.vercel.app/auth/payment',
         bodyParameters,
         config,
       );
+  
       console.log(response);
-
-      setPaymentStatus('success');
-
-      // Redirect to Enrolled page upon successful payment
-      navigate('/enrolled', { state: cleanedState });
+  
+      if (response.data.success) {
+        setPaymentStatus('success');
+        // Redirect to Enrolled page upon successful payment
+        navigate('/enrolled', { state: cleanedState });
+      } else {
+        // Payment failed, set the error message
+        setMsg(response.data.message);
+        setPaymentStatus('failed');
+      }
     } catch (error) {
       console.error('Payment failed:', error);
       setPaymentStatus('failed');
-
-      // Redirect to the same page or handle as needed upon payment failure
-      // navigate('/notenrolled', { state: cleanedState });
     }
   };
+  
 
   return (
     <div>
@@ -121,6 +161,7 @@ const BatchList = () => {
       {selectedBatch && (
         <div className='form-content'>
           <button className='pay-button' onClick={handlePay}>Pay</button>
+          <small>{msg? msg : "Payment can be done only if your age is above 18 or below 65"}</small>
         </div>
       )}
     </div>
