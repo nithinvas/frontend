@@ -50,6 +50,8 @@ const Login = ({ onToggle }) => {
     }
   };
 
+  
+
   return (
     <div className='main-form'>
       <h2 className='text-center'>Login</h2>
@@ -81,17 +83,21 @@ const Login = ({ onToggle }) => {
   );
 };
 
+
 const Signup = ({ onToggle }) => {
   const [name, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [dateOfBirth, setDOB] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Use the useNavigate hook
 
   const handleSignup = async () => {
     try {
       const response = await axios.post('https://backend-psi-jet.vercel.app/auth/register', { name, email, dateOfBirth, password });
       console.log('Signup successful', response.data);
+      alert(response.data.message);
+      // Redirect to login page after successful signup
+      navigate('/');
     } catch (error) {
       console.error('Signup failed', error);
     }
@@ -129,7 +135,6 @@ const Signup = ({ onToggle }) => {
     </div>
   );
 };
-
 const Forms = () => {
   const [isLogin, setIsLogin] = useState(true);
 
