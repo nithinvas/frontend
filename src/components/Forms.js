@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './stylesheets/Forms.css'
 
 const Login = ({ onToggle }) => {
   const [email, setEmail] = useState('');
@@ -50,25 +51,32 @@ const Login = ({ onToggle }) => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <label>
-        Email:
-        <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
-      </label>
+    <div className='main-form'>
+      <h2 className='text-center'>Login</h2>
+      <div>
+        <label className='form-label'>
+          Email:
+          <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+        </label>
+      
       <br />
-      <label>
+      <label className='form-label'>
         Password:
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </label>
       <br />
-      <button onClick={handleLogin}>Login</button>
+      <div className='form-label'>
+        <button onClick={handleLogin}>Login</button>
+      </div>
+      <div className='form-label'>
       <p>
         Don't have an account?{' '}
         <span style={{ cursor: 'pointer', color: 'blue' }} onClick={onToggle}>
           Sign Up
         </span>
       </p>
+      </div>
+      </div>
     </div>
   );
 };

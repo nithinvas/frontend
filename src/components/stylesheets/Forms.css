@@ -1,0 +1,22 @@
+.text-center{
+    margin: auto;
+}
+
+body{
+    background-color: #F5F7F8;
+}
+
+.form-label{
+    text-align: center;
+}
+
+.main-form{
+    margin-top: 20vh;
+    border: 2px solid #9EB8D9;
+    padding: 50px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+}
