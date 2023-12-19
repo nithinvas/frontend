@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './stylesheets/batchList.css'
 
 const BatchList = () => {
   const [batches, setBatches] = useState([]);
@@ -79,14 +80,16 @@ const BatchList = () => {
 
   return (
     <div>
-      {notEnrolledMessage}
-      <h2>Batch IDs</h2>
-      <table>
+      <div className='text-center main-heading'>
+        {notEnrolledMessage}
+      </div>
+      <h2 className='table-heading'>Batch IDs</h2>
+      <table className='table-content tableStyle'>
         <thead>
           <tr>
-            <th>Batch ID</th>
-            <th>Start Time</th>
-            <th>End Time</th>
+            <th className='head-col'>Batch ID</th>
+            <th className='head-col'>Start Time</th>
+            <th className='head-col'>End Time</th>
           </tr>
         </thead>
         <tbody>
@@ -99,9 +102,10 @@ const BatchList = () => {
           ))}
         </tbody>
       </table>
-
+      
+      <div className='form-content'> 
       <form>
-        <label htmlFor="batchSelect">Select Batch:</label>
+        <label htmlFor="batchSelect">Select Batch and Pay:</label>
         <select id="batchSelect" value={selectedBatch} onChange={handleSelectChange}>
           <option value="">Select a Batch</option>
           {batches.map((batch) => (
@@ -111,10 +115,12 @@ const BatchList = () => {
           ))}
         </select>
       </form>
+      </div>
+      
 
       {selectedBatch && (
-        <div>
-          <button onClick={handlePay}>Pay</button>
+        <div className='form-content'>
+          <button className='pay-button' onClick={handlePay}>Pay</button>
         </div>
       )}
     </div>
