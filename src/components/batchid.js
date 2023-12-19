@@ -108,11 +108,12 @@ const BatchList = () => {
         navigate('/enrolled', { state: cleanedState });
       } else {
         // Payment failed, set the error message
-        setMsg(response.data.message);
+        setMsg("Age Restriction!!!!! only 18-65 aged people are allowed");
         setPaymentStatus('failed');
       }
     } catch (error) {
       console.error('Payment failed:', error);
+      setMsg("Age Restriction!!!!! only 18-65 aged people are allowed");
       setPaymentStatus('failed');
     }
   };
@@ -161,7 +162,7 @@ const BatchList = () => {
       {selectedBatch && (
         <div className='form-content'>
           <button className='pay-button' onClick={handlePay}>Pay</button>
-          <small>{msg? msg : "Payment can be done only if your age is above 18 or below 65"}</small>
+          <small>{msg ? msg:"payment can be done only if your age is between 18 and 65"}</small>
         </div>
       )}
     </div>
