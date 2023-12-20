@@ -84,6 +84,61 @@ const Login = ({ onToggle }) => {
 };
 
 
+// const Signup = ({ onToggle }) => {
+//   const [name, setUsername] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [dateOfBirth, setDOB] = useState('');
+//   const navigate = useNavigate(); // Use the useNavigate hook
+
+//   const handleSignup = async () => {
+//     try {
+//       const response = await axios.post('https://backend-psi-jet.vercel.app/auth/register', { name, email, dateOfBirth, password });
+//       console.log('Signup successful', response.data);
+//       alert(response.data.message);
+//       // Redirect to login page after successful signup
+//       navigate('/');
+//     } catch (error) {
+//       console.error('Signup failed', error);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h2>Sign Up</h2>
+//       <label>
+//         Username:
+//         <input type="text" name="name" onChange={(e) => setUsername(e.target.value)} />
+//       </label>
+//       <br />
+//       <label>
+//         Password:
+//         <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+//       </label>
+//       <br />
+//       <label>
+//         Email:
+//         <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+//       </label>
+//       <label>
+//         Date of birth:
+//         <input type="date" name="dateOfBirth" onChange={(e) => setDOB(e.target.value)} />
+//       </label>
+//       <br />
+//       <button onClick={handleSignup}>Sign Up</button>
+//       <p>
+//         Already have an account?{' '}
+//         <span style={{ cursor: 'pointer', color: 'blue' }} onClick={onToggle}>
+//           Login
+//         </span>
+//       </p>
+//     </div>
+//   );
+// };
+
+
+// ... (imports and other code)
+
 const Signup = ({ onToggle }) => {
   const [name, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -104,37 +159,42 @@ const Signup = ({ onToggle }) => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <label>
-        Username:
-        <input type="text" name="name" onChange={(e) => setUsername(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <label>
-        Date of birth:
-        <input type="date" name="dateOfBirth" onChange={(e) => setDOB(e.target.value)} />
-      </label>
-      <br />
-      <button onClick={handleSignup}>Sign Up</button>
-      <p>
-        Already have an account?{' '}
-        <span style={{ cursor: 'pointer', color: 'blue' }} onClick={onToggle}>
-          Login
-        </span>
-      </p>
+    <div className='main-form'> {/* Apply the main-form class to the Signup div */}
+      <h2 className='text-center'>Sign Up</h2> {/* Apply the text-center class to the h2 */}
+      <div>
+        <label className='form-label'>
+          Username:
+          <input type="text" name="name" onChange={(e) => setUsername(e.target.value)} />
+        </label>
+        <br />
+        <label className='form-label'>
+          Password:
+          <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        <br />
+        <label className='form-label'>
+          Email:
+          <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+        </label>
+        <label className='form-label'>
+          Date of birth:
+          <input type="date" name="dateOfBirth" onChange={(e) => setDOB(e.target.value)} />
+        </label>
+        <br />
+        <button onClick={handleSignup}>Sign Up</button>
+        <p>
+          Already have an account?{' '}
+          <span style={{ cursor: 'pointer', color: 'blue' }} onClick={onToggle}>
+            Login
+          </span>
+        </p>
+      </div>
     </div>
   );
 };
+
+// ... (rest of the code)
+
 const Forms = () => {
   const [isLogin, setIsLogin] = useState(true);
 
