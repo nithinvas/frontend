@@ -161,6 +161,7 @@ const BatchList = () => {
 
       {selectedBatch && (
         <div className='form-content'>
+          <p className='amount-text'>AMOUNT 500</p>
           <button className='pay-button' onClick={handlePay}>Pay</button>
           <small>{msg ? msg:"payment can be done only if your age is between 18 and 65"}</small>
         </div>
