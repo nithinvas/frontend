@@ -12,10 +12,11 @@ const Login = ({ onToggle }) => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        'https://backend-psi-jet.vercel.app/auth/login',
+        'https://stageio.symplify.app/api/accounts/login/',
         { email, password },
         { withCredentials: true }
       );
+      console.log(response.data);
 
       const jwtToken = response.data.token;
 
