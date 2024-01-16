@@ -93,4 +93,14 @@
   .pay-button:hover {
     background-color: #45a049;
   }
+
+  /* batchList.css */
+
+  .amount-text {
+    font-size: 18px;
+    font-weight: bold;
+    font-weight: 700; /* or use 'strong' as an alternative */
+    margin-bottom: 10px;
+  }
+
   
